@@ -81,7 +81,7 @@ public class parseData {
 //        }
     }
 
-    
+
 public static void fetchgenredata(genredata[] genre_data) throws FileNotFoundException, IOException {
     String path = "/home/tishyagoyal/Documents/genre.csv";
     BufferedReader br = new BufferedReader(new FileReader(path));
@@ -158,6 +158,31 @@ public static void fetchgenredata(genredata[] genre_data) throws FileNotFoundExc
          }
          return MaxGenreId;
      }
+
+    public static int getHighestRatedGenre(ArrayList<rating> rate_data, ArrayList<movie> movie_data) {
+        int[] GenreFreq=new int[19];
+        for(int i=0;rate_data.get(i).rate==5;i++)
+        {
+            int mid=rate_data.get(i).movieid;
+            for(int j=0;j<19;j++)
+            {
+                if(movie_data.get(mid-1).genre.get(j)==1)
+                {
+                    GenreFreq[j]++;
+                }
+            }
+        }
+        int MaxGenre=0,MaxGenreId=0;
+        for(int i=0;i<19;i++)
+        {
+            if(MaxGenre<GenreFreq[i])
+            {
+                MaxGenre=GenreFreq[i];
+                MaxGenreId=i;
+            }
+        }
+        return MaxGenreId;
+    }
 
 }
 

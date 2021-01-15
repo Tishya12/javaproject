@@ -51,7 +51,10 @@ public class movie_rater {
         int MaxGenreId=obj4.mostwatchedgenre(rate_data,movie_data);
         System.out.println("Most watched genre: "+map2.get(MaxGenreId));
 
+        Collections.sort(rate_data,rating.comp);
 
+        int HighestRatedGenre=obj4.getHighestRatedGenre(rate_data,movie_data);
+        System.out.println("Highest Rated Genre: "+map2.get(HighestRatedGenre));
     }
     }
 
