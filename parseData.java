@@ -8,7 +8,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.StringTokenizer;
@@ -143,7 +142,7 @@ public static void fetchgenredata(genredata[] genre_data) throws FileNotFoundExc
          for (int i = 0; i < rate_data.size(); i++) {
              int mid=rate_data.get(i).movieid;
              for(int j=0;j<19;j++){
-                 if(movie_data.get(mid-1).genre.get(j)==1){
+                 if(movie_data.get(mid-1).genre.get(j)==1){  //&&
                      genreFreq[j]++;
                  }
              }
@@ -166,7 +165,7 @@ public static void fetchgenredata(genredata[] genre_data) throws FileNotFoundExc
             int mid=rate_data.get(i).movieid;
             for(int j=0;j<19;j++)
             {
-                if(movie_data.get(mid-1).genre.get(j)==1)
+                if(movie_data.get(mid-1).genre.get(j)==1 )
                 {
                     GenreFreq[j]++;
                 }
@@ -184,6 +183,21 @@ public static void fetchgenredata(genredata[] genre_data) throws FileNotFoundExc
         return MaxGenreId;
     }
 
+    public static int[] getTopMovieByGenre(ArrayList<rating> rate_data, ArrayList<movie> movie_data) {
+       int obj[]=new int[20];
+        for(int i=0;i<rate_data.size();i++)
+        {
+            int mid=rate_data.get(i).movieid;
+            for(int j=0;j<19;j++)
+            {
+                if(movie_data.get(mid-1).genre.get(j)==1 && obj[j]==0)
+                {
+                    obj[j]=mid;
+                }
+            }
+        }
+        return obj;
+    }
 }
 
 
